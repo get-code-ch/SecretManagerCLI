@@ -108,7 +108,6 @@ func (d *DeleteCommand) Name() string {
 	return d.fs.Name()
 }
 
-
 func (p *Params) String() string {
 	var params string
 	if len(*p) > 0 {
@@ -121,7 +120,7 @@ func (p *Params) String() string {
 
 func (p *Params) Set(s string) error {
 	sep := regexp.MustCompile(`:|,|;|,|=`)
-	if split := sep.Split(s, -1); len(split) != 2 {
+	if split := sep.Split(s, 2); len(split) != 2 {
 		return errors.New("invalid key:value argument for parameter")
 	} else {
 		*p = append(*p, Param{key: split[0], value: split[1]})
